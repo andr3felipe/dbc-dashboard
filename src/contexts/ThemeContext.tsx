@@ -17,7 +17,7 @@ interface ThemeContextProviderProps {
 }
 
 export function ThemeContextProvider({ children }: ThemeContextProviderProps) {
-  const [theme, setTheme] = useState(getTheme());
+  const [theme, setTheme] = useState<ThemeType>(getTheme());
 
   function getTheme() {
     const getTheme = localStorage.getItem("theme");

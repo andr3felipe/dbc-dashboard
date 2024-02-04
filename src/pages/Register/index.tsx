@@ -1,8 +1,9 @@
 import { useForm } from 'react-hook-form'
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react';
 
-import { Button } from "../../components/Button";
 import * as S from "./styles";
+import Alert from '@mui/material/Alert';
 
 export function Register() {
 
@@ -11,12 +12,29 @@ export function Register() {
     senha: string;
   }
 
+  interface AlertMessage {
+    severity: "error" | "warning";
+    message: string | any;
+  }
+
   const { register, handleSubmit, reset } = useForm<UserData>();
   const navigate = useNavigate();
+  const [alertMessage, setAlertMessage] = useState<AlertMessage | null>(null);
+  const [showAlerts, setShowAlerts] = useState(false);
+
+  useEffect(() => {
+    if (alertMessage) {
+      setShowAlerts(true);
+      setTimeout(() => {
+        setShowAlerts(false);
+        setAlertMessage(null);
+      }, 3500);
+    }
+  }, [alertMessage]);
 
   async function registerUser(userData: UserData) {
     try {
-        const response = await fetch("http://vemser-dbc.dbccompany.com.br:39000/vemser/pessoa-api-back/auth/create", {
+      const response = await fetch("http://vemser-dbc.dbccompany.com.br:39000/vemser/pessoa-api-back/auth/create", {
         method: "POST",
         headers: {
           "Content-Type": "Application/json",
@@ -28,20 +46,17 @@ export function Register() {
         const data = await response.json();
         const { message } = data;
 
-        throw new Error(message);
+        setAlertMessage({ severity: 'error', message: message });
       }
 
-      // MODIFICAR
-      alert("Usuário criado com sucesso.")
-      // MODIFICAR
-      navigate("/");
-
-      const token = await response.text();
-      localStorage.setItem("token", token);
-      navigate("/");
+      else {
+        const token = await response.text();
+        localStorage.setItem("token", token);
+        navigate("/");
+      }
     }
-    catch(error) {
-      alert(error);
+    catch (error: any) {
+      setAlertMessage({ severity: 'error', message: error.message });
     }
   }
 
@@ -70,9 +85,10 @@ export function Register() {
           type="password"
           {...register('senha', { required: true })}
         />
-        <Button children="Cadastrar conta" color="background" background="text" type="submit"></Button>
+        <S.StyledButton children="Cadastrar conta" color="background" background="text" type="submit"></S.StyledButton>
         <S.StyledText>Já tem uma conta?</S.StyledText>
-        <Button children="Fazer Login" color="background" background="text" onClick={navigateToLogin}></Button>
+        <S.StyledButton children="Fazer Login" color="background" background="text" onClick={navigateToLogin}></S.StyledButton>
+        {showAlerts && alertMessage && <Alert severity={alertMessage?.severity}>{alertMessage?.message}</Alert>}
       </S.LoginForm>
     </S.Container>
   );

@@ -1,6 +1,7 @@
 import { TextField } from "@mui/material";
 
 import styled from "styled-components";
+import { Button } from "../../components/Button";
 
 export const Container = styled.main`
     display: flex;
@@ -31,3 +32,7 @@ color: black;
 
 export const StyledTextField = styled(TextField)`
 `;
+
+export const StyledButton = styled(Button)`
+height: 56px;
+`

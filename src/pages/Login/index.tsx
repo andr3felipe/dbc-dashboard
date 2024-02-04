@@ -13,7 +13,7 @@ export function Login() {
   }
 
   interface AlertMessage {
-    severity: 'error' | 'warning' | 'info' | 'success';
+    severity: 'error' | 'warning';
     message: string;
   }  
 

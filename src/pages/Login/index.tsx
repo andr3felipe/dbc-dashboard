@@ -1,8 +1,9 @@
 import { useForm } from 'react-hook-form'
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react';
 
-import { Button } from "../../components/Button";
 import * as S from "./styles";
+import Alert from '@mui/material/Alert';
 
 export function Login() {
 
@@ -11,15 +12,32 @@ export function Login() {
     senha: string;
   }
 
+  interface AlertMessage {
+    severity: 'error' | 'warning' | 'info' | 'success';
+    message: string;
+  }  
+
   const { register, handleSubmit, reset } = useForm<UserData>();
   const navigate = useNavigate();
+  const [alertMessage, setAlertMessage] = useState<AlertMessage | null>(null);
+  const [showAlerts, setShowAlerts] = useState(false);
+
+  useEffect(() => {
+    if(alertMessage) {
+      setShowAlerts(true);
+      setTimeout(() => {
+        setShowAlerts(false);
+        setAlertMessage(null);
+      }, 3500);
+    }
+  }, [alertMessage]);
 
   async function logUser(userData: UserData) {
     try {
       const response = await fetch("http://vemser-dbc.dbccompany.com.br:39000/vemser/pessoa-api-back/auth", {
         method: "POST",
         headers: {
-          "Content-Type": "Aplication/json",
+          "Content-Type": "Application/json",
         },
         body: JSON.stringify(userData)
       })
@@ -27,19 +45,21 @@ export function Login() {
       if (!response.ok) {
         console.log(response.status);
 
-        if (response.status === 403) {
-          throw new Error('Login ou senha incorretos');
-        }
-        else throw new Error('Erro inesperado. Tente mais tarde.')
+        const errorAlertMessage = response.status === 403
+          ? 'Login ou senha incorretos'
+          : 'Erro inesperado. Tente mais tarde.';
 
+        setAlertMessage({ severity: response.status === 403 ? 'error' : 'warning', message: errorAlertMessage });
+        return;
       }
-
+      
       const token = await response.text();
       localStorage.setItem("token", token);
       navigate("/dashboard");
     }
     catch(error) {
       console.log(error);
+      setAlertMessage({ severity: 'error', message: 'Erro inesperado. Tente mais tarde.' });
     }
   }
 
@@ -68,9 +88,10 @@ export function Login() {
           type="password"
           {...register('senha', { required: true })}
         />
-        <Button children="Entrar" color="background" background="text" type="submit"></Button>
+        <S.StyledButton children="Entrar" color="background" background="text" type="submit"></S.StyledButton>
         <S.StyledLink href="/">Esqueceu a senha?</S.StyledLink>
-        <Button children="Crie uma conta" color="background" background="text" onClick={navigateToRegister}></Button>
+        <S.StyledButton children="Crie uma conta" color="background" background="text" onClick={navigateToRegister}></S.StyledButton>
+        { showAlerts && alertMessage && <Alert severity={alertMessage?.severity}>{alertMessage?.message}</Alert>}
       </S.LoginForm>
     </S.Container>
   );

@@ -5,6 +5,8 @@ import { NavLink } from "react-router-dom";
 import { deleteUser } from "../../http/People/deletePeople";
 import { Button } from "../../components/Button";
 import Elipse from "../../assets/Ellipse 3.png";
+import Logo from "../../assets/setting 1.svg";
+import Logout from "../../assets/sair-do-usuario.svg";
 
 import * as S from "./styles";
 
@@ -80,43 +82,65 @@ export function Dashboard() {
   );
 
   return (
-    <S.Container>
-      <S.Header>
-        <span>Hello {userName},</span>
-        <input type="text" placeholder="Digite o nome do usuário aqui" />
-      </S.Header>
-      <S.Infos>
-        <S.Users>
-          <img src={Elipse} alt="" />
-          <p>
-            Total de usuários <span>{allUsers}</span>
-          </p>
-          <img src={Elipse} alt="" />
-          <p>
-            Membros <span>{members}</span>
-          </p>
-          <img src={Elipse} alt="" />
-          <p>
-            Ativos <span>{membersActives}</span>
-          </p>
-        </S.Users>
-      </S.Infos>
-      <S.InfosTable>
-        <h2>Todos os usuários</h2>
-      </S.InfosTable>
-      <S.Table>
-        <DataGrid
-          style={S.DataGridStyle}
-          rows={rows}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 5 },
-            },
-          }}
-          pageSizeOptions={[5, 10, 50]}
-        />
-      </S.Table>
-    </S.Container>
+    <>
+      <S.Aside>
+        <div className="title">
+          <img src={Logo} alt="" />
+          <h1>Dashboard</h1>
+        </div>
+        <Button className="menu" color={"secondary"} background={"background"}>
+          <img src={Logout} alt="" />
+          <span>Dashboard</span>
+        </Button>
+        <NavLink className="LogoutNav" to={"/Login"}>
+          <Button
+            className="logout"
+            color={"secondary"}
+            background={"background"}
+          >
+            <img src={Logout} alt="" />
+            <span>Logout</span>
+          </Button>
+        </NavLink>
+      </S.Aside>
+      <S.Container>
+        <S.Header>
+          <span>Hello {userName},</span>
+          {/* <input type="text" placeholder="Digite o nome do usuário aqui" /> */}
+        </S.Header>
+        <S.Infos>
+          <S.Users>
+            <img src={Elipse} alt="" />
+            <p>
+              Total de usuários <span>{allUsers}</span>
+            </p>
+            <img src={Elipse} alt="" />
+            <p>
+              Membros <span>{members}</span>
+            </p>
+            <img src={Elipse} alt="" />
+            <p>
+              Ativos <span>{membersActives}</span>
+            </p>
+          </S.Users>
+        </S.Infos>
+        <S.InfosTable>
+          <h2>Todos os usuários</h2>
+        </S.InfosTable>
+        <S.Table>
+          <DataGrid
+            style={S.DataGridStyle}
+            rows={rows}
+            columns={columns}
+            initialState={{
+              pagination: {
+                paginationModel: { page: 0, pageSize: 5 },
+              },
+            }}
+            pageSizeOptions={[5, 10, 50]}
+          />
+        </S.Table>
+      </S.Container>
+    </>
   );
 }

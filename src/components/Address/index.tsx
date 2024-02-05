@@ -49,7 +49,7 @@ export function Address({
       <S.Flex>
         <h3>Endereço {index + 1}</h3>
         <S.Flex>
-          <BasicMenu>
+          <BasicMenu id={String(idEndereco)}>
             <Button
               background="success-text"
               color="white"

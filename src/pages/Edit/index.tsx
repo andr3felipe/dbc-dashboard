@@ -77,7 +77,7 @@ export function Edit() {
             <S.Flex gap={"0"}>
               <h1>Dados Pessoais</h1>
 
-              <BasicMenu>
+              <BasicMenu id="dados-pessoais-options">
                 <Button
                   background="success-text"
                   color="white"
@@ -132,7 +132,7 @@ export function Edit() {
             <S.Flex gap={"0"}>
               <h2>Endereços</h2>
 
-              <BasicMenu>
+              <BasicMenu id="enderecos-options">
                 <Button
                   background="primary"
                   color="white"
@@ -179,7 +179,7 @@ export function Edit() {
             <S.Flex gap={"0"}>
               <h2>Contatos</h2>
 
-              <BasicMenu>
+              <BasicMenu id="contatos-options">
                 <Button
                   background="primary"
                   color="white"

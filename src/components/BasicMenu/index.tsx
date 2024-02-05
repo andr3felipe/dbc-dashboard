@@ -5,9 +5,10 @@ import * as S from "./styles";
 
 interface BasicMenuProps {
   children: React.ReactNode;
+  id: string;
 }
 
-export default function BasicMenu({ children }: BasicMenuProps) {
+export default function BasicMenu({ children, id }: BasicMenuProps) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -20,7 +21,7 @@ export default function BasicMenu({ children }: BasicMenuProps) {
   return (
     <div>
       <Button
-        id="basic-button"
+        id={id}
         aria-controls={open ? "basic-menu" : undefined}
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
@@ -45,12 +46,12 @@ export default function BasicMenu({ children }: BasicMenuProps) {
             flexGrow: 1,
           },
         }}
-        id="basic-menu"
+        id={id}
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
         MenuListProps={{
-          "aria-labelledby": "basic-button",
+          "aria-labelledby": id,
         }}
       >
         {children}

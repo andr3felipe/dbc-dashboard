@@ -25,7 +25,7 @@ export const UserData = styled.div`
   margin: 0 auto;
 `;
 
-export const DataType = styled.h4`
+export const DataType = styled.span`
   font-weight: 600;
 `;
 

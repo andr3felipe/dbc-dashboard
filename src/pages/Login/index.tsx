@@ -16,7 +16,7 @@ export function Login() {
     message: string;
   }
 
-  const { register, handleSubmit, reset } = useForm<UserData>();
+  const { register, handleSubmit } = useForm<UserData>();
   const navigate = useNavigate();
   const [alertMessage, setAlertMessage] = useState<AlertMessage | null>(null);
   const [showAlerts, setShowAlerts] = useState(false);

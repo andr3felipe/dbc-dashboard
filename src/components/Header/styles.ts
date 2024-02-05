@@ -8,6 +8,19 @@ export const Container = styled.header`
   @media (max-width: 768px) {
     display: none;
   }
+
+  a {
+    text-decoration: none;
+    color: ${({ theme }) => theme.colors.text};
+  }
+`;
+
+export const Flex = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
 `;
 
 export const Aside = styled.aside`
@@ -19,12 +32,6 @@ export const Aside = styled.aside`
   flex-direction: column;
   border-radius: ${({ theme }) => theme.radii.large};
   box-shadow: 0px 10px 60px 0px rgba(226, 236, 249, 0.5);
-`;
-
-export const Title = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 1rem;
 `;
 
 export const StyledButton = styled(Button)`
@@ -43,10 +50,5 @@ export const StyledButton = styled(Button)`
   &:hover {
     background-color: ${({ theme }) => theme.colors.primary};
     color: ${({ theme }) => theme.colors.white};
-  }
-
-  & img {
-    width: 1rem;
-    height: 1rem;
   }
 `;

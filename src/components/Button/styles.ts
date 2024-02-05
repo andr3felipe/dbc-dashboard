@@ -1,7 +1,10 @@
 import styled from "styled-components";
 import { ButtonProps } from ".";
 
-type StyledButtonProps = Pick<ButtonProps, "color" | "background" | "border">;
+type StyledButtonProps = Pick<
+  ButtonProps,
+  "color" | "background" | "border" | "width"
+>;
 
 export const StyledButton = styled.button<StyledButtonProps>`
   border-radius: ${({ theme }) => theme.radii.small};
@@ -11,11 +14,17 @@ export const StyledButton = styled.button<StyledButtonProps>`
   border: ${({ border, theme }) =>
     border ? `1px solid ${theme.colors[border]}` : "1px solid transparent"};
 
+  ${({ width }) => width && `width: ${width}`};
+
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 
   &:hover {
-    opacity: 0.95;
+    transform: scale(1.01);
   }
 `;

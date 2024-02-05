@@ -2,14 +2,15 @@ import { useQuery, useQueryClient } from "react-query";
 import { fetchPeople } from "../../http/People/fetchPeople";
 import { DataGrid } from "@mui/x-data-grid";
 import { NavLink } from "react-router-dom";
-import { deleteUser } from "../../http/People/deletePeople";
 import { Button } from "../../components/Button";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import CheckUsers from "../../assets/Group 10.svg";
 import Users from "../../assets/Group 11.svg";
 
+
 import * as S from "./styles";
 import { SetStateAction, useState } from "react";
+import { deletePersonById } from "../../http/People/deletePersonById";
 
 export function Dashboard() {
   const { data: people = { content: [] } } = useQuery({
@@ -36,7 +37,7 @@ export function Dashboard() {
 
   const handleDeleteConfirmation = async () => {
     try {
-      await deleteUser({ userId: deleteUserId });
+      await deletePersonById({ id: deleteUserId });
       queryClient.invalidateQueries("people");
     } catch (error) {
       console.error("Erro ao excluir usuário:", error);

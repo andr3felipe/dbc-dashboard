@@ -22,7 +22,7 @@ export function Header() {
         <NavLink to={"/dashboard"} aria-label="Ir para o Dashboard">
           <S.Flex onClick={toggleAside}>
             <Nut size={"3rem"} />
-            {isAsideExpanded && <span>Dashboard</span>}
+           {isAsideExpanded && <S.Logo>Dashboard</S.Logo>            
           </S.Flex>
         </NavLink>
 

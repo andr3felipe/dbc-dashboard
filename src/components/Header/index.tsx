@@ -1,9 +1,15 @@
+import { useState } from "react";
 import * as S from "./styles";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Key, SignOut, Nut } from "@phosphor-icons/react";
 
 export function Header() {
   const navigate = useNavigate();
+  const [isAsideExpanded, setAsideExpanded] = useState(true);
+
+  const toggleAside = () => {
+    setAsideExpanded(!isAsideExpanded);
+  };
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -12,18 +18,18 @@ export function Header() {
 
   return (
     <S.Container>
-      <S.Aside>
+      <S.Aside expanded={isAsideExpanded}>
         <NavLink to={"/dashboard"} aria-label="Ir para o Dashboard">
-          <S.Flex>
+          <S.Flex onClick={toggleAside}>
             <Nut size={"3rem"} />
-            <span>Dashboard</span>
+           {isAsideExpanded && <S.Logo>Dashboard</S.Logo>            
           </S.Flex>
         </NavLink>
 
         <NavLink to={"/dashboard"}>
           <S.StyledButton color={"secondary"} background={"background"}>
             <Key size={"1.5rem"} />
-            Dashboard
+            {isAsideExpanded && "Dashboard"}
           </S.StyledButton>
         </NavLink>
 
@@ -33,7 +39,7 @@ export function Header() {
           onClick={logout}
         >
           <SignOut size={"1.5rem"} />
-          Logout
+          {isAsideExpanded && "Logout"}
         </S.StyledButton>
       </S.Aside>
     </S.Container>

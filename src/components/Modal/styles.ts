@@ -1,13 +1,16 @@
 import styled from "styled-components";
-import Modal from "react-modal";
+import { XCircle } from "@phosphor-icons/react";
 
-export const Container = styled.div`
-  background-color: ${({ theme }) => theme.colors.black};
-`;
+export const CloseButton = styled(XCircle)`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+  font-size: 2rem;
+  color: ${({ theme }) => theme.colors.text};
+  transition: color 0.2s;
 
-export const StyledModal = styled(Modal)`
-  align-items: center;
-  width: 20rem;
-  height: 20rem;
-  margin: 0 auto;
+  &:hover {
+    color: ${({ theme }) => theme.colors["error-text"]};
+  }
 `;

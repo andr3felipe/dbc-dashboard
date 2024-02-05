@@ -7,6 +7,8 @@ export interface ButtonProps extends ComponentProps<"button"> {
   color: keyof ThemeTypeColors;
   background: keyof ThemeTypeColors;
   border?: keyof ThemeTypeColors;
+  width?: "100%";
+  onClick?: () => void;
 }
 
 export function Button({ children, ...rest }: ButtonProps) {

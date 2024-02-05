@@ -1,12 +1,11 @@
-import { useForm } from 'react-hook-form'
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 import * as S from "./styles";
-import Alert from '@mui/material/Alert';
+import Alert from "@mui/material/Alert";
 
 export function Register() {
-
   interface UserData {
     login: string;
     senha: string;
@@ -34,29 +33,29 @@ export function Register() {
 
   async function registerUser(userData: UserData) {
     try {
-      const response = await fetch("http://vemser-dbc.dbccompany.com.br:39000/vemser/pessoa-api-back/auth/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "Application/json",
-        },
-        body: JSON.stringify(userData)
-      })
+      const response = await fetch(
+        "http://vemser-dbc.dbccompany.com.br:39000/vemser/pessoa-api-back/auth/create",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "Application/json",
+          },
+          body: JSON.stringify(userData),
+        }
+      );
 
       if (!response.ok) {
         const data = await response.json();
         const { message } = data;
 
-        setAlertMessage({ severity: 'error', message: message });
-      }
-
-      else {
+        setAlertMessage({ severity: "error", message: message });
+      } else {
         const token = await response.text();
         localStorage.setItem("token", token);
         navigate("/");
       }
-    }
-    catch (error: any) {
-      setAlertMessage({ severity: 'error', message: error.message });
+    } catch (error: any) {
+      setAlertMessage({ severity: "error", message: error.message });
     }
   }
 
@@ -67,7 +66,7 @@ export function Register() {
 
   const navigateToLogin = () => {
     navigate("/");
-  }
+  };
 
   return (
     <S.Container>
@@ -77,18 +76,32 @@ export function Register() {
           label="Login"
           variant="outlined"
           type="text"
-          {...register('login', { required: true })}
+          {...register("login", { required: true })}
         />
         <S.StyledTextField
           label="Senha"
           variant="outlined"
           type="password"
-          {...register('senha', { required: true })}
+          {...register("senha", { required: true })}
         />
-        <S.StyledButton children="Cadastrar conta" color="background" background="text" type="submit"></S.StyledButton>
+        <S.StyledButton
+          children="Cadastrar conta"
+          color="background"
+          background="text"
+          type="submit"
+        ></S.StyledButton>
         <S.StyledText>Já tem uma conta?</S.StyledText>
-        <S.StyledButton children="Fazer Login" color="background" background="text" onClick={navigateToLogin}></S.StyledButton>
-        {showAlerts && alertMessage && <Alert severity={alertMessage?.severity}>{alertMessage?.message}</Alert>}
+        <S.StyledButton
+          children="Fazer Login"
+          color="background"
+          background="text"
+          onClick={navigateToLogin}
+        ></S.StyledButton>
+        {showAlerts && alertMessage && (
+          <Alert severity={alertMessage?.severity}>
+            {alertMessage?.message}
+          </Alert>
+        )}
       </S.LoginForm>
     </S.Container>
   );

@@ -17,13 +17,13 @@ interface ThemeContextProviderProps {
 }
 
 export function ThemeContextProvider({ children }: ThemeContextProviderProps) {
-  const [theme, setTheme] = useState(getTheme());
+  const [theme, setTheme] = useState<ThemeType>(getTheme());
 
   function getTheme() {
     const getTheme = localStorage.getItem("theme");
-    const theme = getTheme ? JSON.parse(getTheme) : null;
+    const theme = getTheme ? getTheme : null;
 
-    return theme?.themeTitle === "dark" ? darkTheme : lightTheme;
+    return theme === "dark" ? darkTheme : lightTheme;
   }
 
   function toggleTheme() {
@@ -31,7 +31,11 @@ export function ThemeContextProvider({ children }: ThemeContextProviderProps) {
 
     localStorage.setItem(
       "theme",
-      JSON.stringify(theme.themeTitle === "light" ? darkTheme : lightTheme)
+      JSON.stringify(
+        theme.themeTitle === "light"
+          ? darkTheme.themeTitle
+          : lightTheme.themeTitle
+      )
     );
   }
 

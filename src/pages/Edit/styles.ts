@@ -1,3 +1,79 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { Eye as eye, EyeSlash as eyeSlash } from "@phosphor-icons/react";
 
-export const Container = styled.main``;
+export const Container = styled.main`
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  margin: 2rem;
+
+  @media (max-width: 768px) {
+    margin: 0;
+    padding: 0.5rem;
+  }
+`;
+
+export const UserData = styled.div`
+  background-color: ${({ theme }) => theme.colors.white};
+  border-radius: ${({ theme }) => theme.radii.large};
+  box-shadow: 0px 10px 60px 0px rgba(226, 236, 249, 0.5);
+  padding: 2rem;
+  width: fit-content;
+`;
+
+export const DataType = styled.h4`
+  font-weight: 600;
+`;
+
+export const Data = styled.p<{ width?: string }>`
+  text-transform: capitalize;
+
+  ${({ width }) =>
+    width &&
+    css`
+      width: ${width}px;
+    `}
+`;
+
+export const Flex = styled.div<{ gap?: string }>`
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-flow: row wrap;
+
+  ${({ gap }) =>
+    gap &&
+    css`
+      gap: ${gap}rem;
+    `}
+`;
+
+export const Row = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`;
+
+export const Section = styled.section`
+  margin-top: 2rem;
+`;
+
+export const Eye = styled(eye)`
+  cursor: pointer;
+  font-size: 1.5rem;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.primary};
+  }
+`;
+
+export const EyeSlash = styled(eyeSlash)`
+  cursor: pointer;
+  font-size: 1.5rem;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.primary};
+  }
+`;

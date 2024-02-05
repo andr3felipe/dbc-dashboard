@@ -23,7 +23,10 @@ const schema = yup
       .string()
       .min(4, "Muito curto.")
       .required("Campo obrigatório."),
-    numero: yup.number().required("Campo obrigatório."),
+    numero: yup
+      .number()
+      .typeError("Insira um valor numérico válido.")
+      .required("Campo obrigatório."),
     complemento: yup
       .string()
       .min(4, "Muito curto.")
@@ -134,6 +137,7 @@ export function FormAddress({ closeForm }: { closeForm: () => void }) {
           <S.NormalInput
             defaultValue={address?.numero}
             placeholder="123"
+            type="number"
             {...register("numero")}
           />
         </S.Row>

@@ -6,11 +6,12 @@ export const Container = styled.main`
     font-size: 2rem;
     margin-bottom: 0.5rem;
   }
+  width: 100%;
 
   margin: 2rem;
 
   @media (max-width: 768px) {
-    margin: 0;
+    margin: 0 auto;
     padding: 0.5rem;
   }
 `;
@@ -21,14 +22,21 @@ export const UserData = styled.div`
   box-shadow: 0px 10px 60px 0px rgba(226, 236, 249, 0.5);
   padding: 2rem;
   width: fit-content;
+  margin: 0 auto;
 `;
 
 export const DataType = styled.h4`
   font-weight: 600;
 `;
 
-export const Data = styled.p<{ width?: string }>`
+export const Data = styled.p<{ width?: string; transform?: "lowercase" }>`
   text-transform: capitalize;
+
+  ${({ transform }) =>
+    transform === "lowercase" &&
+    css`
+      text-transform: lowercase;
+    `}
 
   ${({ width }) =>
     width &&
@@ -42,6 +50,7 @@ export const Flex = styled.div<{ gap?: string }>`
   align-items: center;
   gap: 2rem;
   flex-flow: row wrap;
+  justify-content: center;
 
   ${({ gap }) =>
     gap &&

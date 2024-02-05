@@ -8,7 +8,7 @@ export interface PersonData {
   cpf: string;
   email: string;
   idPessoa: number;
-  contatos: [];
+  contatos: Contato[];
   enderecos: Endereco[];
 }
 
@@ -23,6 +23,13 @@ interface Endereco {
   estado: string;
   pais: string;
   idEndereco: number;
+}
+
+interface Contato {
+  tipoContato: string;
+  telefone: string;
+  descricao: string;
+  idContato: number;
 }
 
 export const fetchPersonById = async ({

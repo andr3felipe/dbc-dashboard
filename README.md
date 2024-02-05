@@ -21,7 +21,7 @@ O projeto DBC-Dashboard apresenta um site de um Painel Administrativo onde os ge
   - Página de DashBoard
 
 ### 🖼️ Layout
-Foi utilizada uma paleta de cores criada com base em um figma fornecido. [figma.](https://www.figma.com/file/OfpEAMO21MDxQe63eDFmrm/filmes?type=design&mode=design&t=nje2mvg0QosVpvV8-0)
+Foi utilizada uma paleta de cores criada com base em um figma fornecido.
 
 ## ⚙️ Como Executar na sua máquina 
 - 1 - Execute "npm i" para instalar as dependencias do package

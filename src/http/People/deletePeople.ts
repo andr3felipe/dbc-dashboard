@@ -13,7 +13,7 @@ export const deleteUser = async ({ userId }: DeleteUserProps) => {
         headers: {
           "Content-Type": "application/json",
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2ZW1zZXItYXBpIiwianRpIjoiMiIsImNhcmdvcyI6WyJST0xFX1VTVUFSSU8iLCJST0xFX0FETUlOIiwiUk9MRV9NQVJLRVRJTkciXSwiaWF0IjoxNzA2ODk4ODU3LCJleHAiOjE3MDY5ODUyNTd9.0L-rbWjbd5DU-1r77-T7K8aK7jOMc0pAwSubXtBC0AU",
+            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2ZW1zZXItYXBpIiwianRpIjoiNjY1IiwiY2FyZ29zIjpbXSwiaWF0IjoxNzA3MDg3MTMyLCJleHAiOjE3MDcxNzM1MzJ9.yWXOssEoaZPebI9dFRUxmuRrJmAjnQjtDpCgMsnU-Nc",
         },
       }
     );

@@ -5,6 +5,12 @@ export const Container = styled.main`
   width: 100%;
   color: ${({ theme }) => theme.colors.text};
   margin: 0 auto;
+  padding: 0.5rem;
+
+  @media (max-width: 425px) {
+    width: 90%;
+    overflow: hidden;
+  }
 `;
 
 export const Header = styled.div`
@@ -25,22 +31,21 @@ export const Infos = styled.div`
 
 export const Users = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  gap: 1rem;
   background-color: ${({ theme }) => theme.colors.white};
-  padding: 1rem;
-  border-radius: 2rem;
+  padding: 2rem;
   margin: 0 auto;
   margin-block: 1rem;
   width: 100%;
+  border-radius: ${({ theme }) => theme.radii.large};
+  box-shadow: 0px 10px 60px 0px rgba(226, 236, 249, 0.5);
 
   & img {
     margin-left: 1.5rem;
   }
 
   & p {
-    color: ${({ theme }) => theme.colors.secondary};
     margin-right: 1.5rem;
   }
 
@@ -49,8 +54,18 @@ export const Users = styled.div`
     flex-direction: column;
     align-items: center;
     font-weight: bold;
-    color: ${({ theme }) => theme.colors.text};
   }
+
+  @media (max-width: 425px) {
+    display: block;
+  }
+`;
+
+export const Row = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 `;
 
 export const InfosTable = styled.div`
@@ -59,6 +74,7 @@ export const InfosTable = styled.div`
   border-top-right-radius: 2rem;
   margin: 0 auto;
   padding: 1.5rem;
+  box-shadow: 0px 10px 60px 0px rgba(226, 236, 249, 0.5);
 
   background-color: ${({ theme }) => theme.colors.white};
 
@@ -69,79 +85,13 @@ export const InfosTable = styled.div`
 `;
 
 export const Table = styled.div`
+  display: flex;
   margin: 0 auto;
   background-color: ${({ theme }) => theme.colors.white};
-  border-bottom-left-radius: 2rem;
-  border-bottom-right-radius: 2rem;
+  box-shadow: 0px 10px 60px 0px rgba(226, 236, 249, 0.5);
 `;
 
 export const DataGridStyle = {
   border: "none",
   paddingInline: "2.5rem",
 };
-
-export const Aside = styled.aside`
-  background-color: ${({ theme }) => theme.colors.white};
-  width: 15rem;
-  height: 100vh;
-  float: left;
-  padding: 1rem;
-  flex-direction: column;
-  margin-right: 10rem;
-
-  .LogoutNav {
-    text-decoration: none;
-  }
-
-  .title {
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-  }
-
-  .logout {
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-    gap: 0.5rem;
-    cursor: pointer;
-    font-weight: bold;
-    margin: 0;
-    border-radius: 1rem;
-    border: none;
-    width: 100%;
-
-    &:hover {
-      background-color: ${({ theme }) => theme.colors.primary};
-      color: ${({ theme }) => theme.colors.white};
-    }
-
-    & img {
-      width: 1rem;
-    }
-  }
-
-  .menu {
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-    gap: 0.5rem;
-    cursor: pointer;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    border-radius: 1rem;
-    border: none;
-    width: 100%;
-    /* background-color: ${({ theme }) => theme.colors.primary};
-    color: ${({ theme }) => theme.colors.white}; */
-
-    &:hover {
-      background-color: ${({ theme }) => theme.colors.primary};
-      color: ${({ theme }) => theme.colors.white};
-    }
-
-    & img {
-      width: 1rem;
-    }
-  }
-`;

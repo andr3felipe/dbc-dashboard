@@ -9,6 +9,8 @@ interface Contact {
   descricao: string;
 }
 
+const token = localStorage.getItem("token") as string;
+
 export const editContact = async ({
   contactId,
   contact,
@@ -20,8 +22,7 @@ export const editContact = async ({
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2ZW1zZXItYXBpIiwianRpIjoiNTE0IiwiY2FyZ29zIjpbXSwiaWF0IjoxNzA3MTE1MTE0LCJleHAiOjE3MDcyMDE1MTR9.umil_0QDrmjCnVjyfBWpSI60d4bZhWRydK2xWkdwlcc",
+          Authorization: token,
         },
         body: JSON.stringify(contact),
       }

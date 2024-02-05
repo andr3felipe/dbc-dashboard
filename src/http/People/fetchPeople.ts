@@ -3,6 +3,7 @@ interface FetchPeopleProps {
   pageSize?: number;
 }
 
+const token = localStorage.getItem("token") as string;
 export const fetchPeople = async ({
   page = 0,
   pageSize = 100,
@@ -14,8 +15,7 @@ export const fetchPeople = async ({
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2ZW1zZXItYXBpIiwianRpIjoiNjY1IiwiY2FyZ29zIjpbXSwiaWF0IjoxNzA3MDg3MTMyLCJleHAiOjE3MDcxNzM1MzJ9.yWXOssEoaZPebI9dFRUxmuRrJmAjnQjtDpCgMsnU-Nc",
+        Authorization: token,
       },
     }
   );

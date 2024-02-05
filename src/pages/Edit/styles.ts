@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { Eye as eye, EyeSlash as eyeSlash } from "@phosphor-icons/react";
+import MCircularProgress from "@mui/material/CircularProgress";
 
 export const Container = styled.main`
   h1 {
@@ -16,6 +17,10 @@ export const Container = styled.main`
   }
 `;
 
+export const CircularProgress = styled(MCircularProgress)`
+  color: ${({ theme }) => theme.colors.primary};
+`;
+
 export const UserData = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: ${({ theme }) => theme.radii.large};
@@ -23,6 +28,12 @@ export const UserData = styled.div`
   padding: 2rem;
   width: fit-content;
   margin: 0 auto;
+`;
+
+export const LoadingScreen = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
 `;
 
 export const DataType = styled.span`

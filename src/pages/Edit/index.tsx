@@ -70,7 +70,9 @@ export function Edit() {
   return (
     <S.Container>
       {isLoading ? (
-        <h1>Carregando...</h1>
+        <S.LoadingScreen>
+          <S.CircularProgress />
+        </S.LoadingScreen>
       ) : person ? (
         <>
           <S.Section>
@@ -211,14 +213,16 @@ export function Edit() {
                   />
                 ))
               ) : (
-                <p>Cadastre um contato.</p>
+                <p>Pessoa não encontrada</p>
               )}
             </S.Flex>
           </S.Section>
         </>
       ) : (
         <>
-          <p>Pessoa não encontrada.</p>
+          <S.LoadingScreen>
+            <p>Pessoa não encontrada.</p>
+          </S.LoadingScreen>
         </>
       )}
 

@@ -7,7 +7,6 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import CheckUsers from "../../assets/Group 10.svg";
 import Users from "../../assets/Group 11.svg";
 
-
 import * as S from "./styles";
 import { SetStateAction, useState } from "react";
 import { deletePersonById } from "../../http/People/deletePersonById";
@@ -61,7 +60,7 @@ export function Dashboard() {
           renderCell: (params: { row: { id: string } }) => (
             <NavLink to={`/${params.row.id}`}>
               <Button
-                color="success-text"
+                color="text"
                 background="success-background"
                 border="success-text"
               >
@@ -98,7 +97,7 @@ export function Dashboard() {
           renderCell: (params: { row: { id: string } }) => (
             <NavLink to={`${params.row.id}`}>
               <Button
-                color="success-text"
+                color="text"
                 background="success-background"
                 border="success-text"
               >
@@ -113,7 +112,7 @@ export function Dashboard() {
           width: 100,
           renderCell: (params: { row: { id: string } }) => (
             <Button
-              color="error-text"
+              color="text"
               background="error-background"
               border="error-text"
               onClick={() => handleDeleteClick(params.row.id)}
@@ -185,7 +184,7 @@ export function Dashboard() {
               <p>Tem certeza que deseja deletar?</p>
               <Button
                 onClick={handleDeleteConfirmation}
-                color="success-text"
+                color="text"
                 background="success-background"
                 border="success-text"
               >
@@ -193,7 +192,7 @@ export function Dashboard() {
               </Button>
               <Button
                 onClick={handleDeleteCancel}
-                color="error-text"
+                color="text"
                 background="error-background"
                 border="error-text"
               >

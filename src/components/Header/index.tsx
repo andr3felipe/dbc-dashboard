@@ -5,10 +5,10 @@ import { Key, SignOut, Nut } from "@phosphor-icons/react";
 
 export function Header() {
   const navigate = useNavigate();
-  const [isAsideExpanded, setAsideExpanded] = useState(true);
+  const [isAsideExpanded, setAsideExpanded] = useState("true");
 
   const toggleAside = () => {
-    setAsideExpanded(!isAsideExpanded);
+    setAsideExpanded((state) => (state === "true" ? "false" : "true"));
   };
 
   const logout = () => {
@@ -19,17 +19,15 @@ export function Header() {
   return (
     <S.Container>
       <S.Aside expanded={isAsideExpanded}>
-        <NavLink to={"/dashboard"} aria-label="Ir para o Dashboard">
-          <S.Flex onClick={toggleAside}>
-            <Nut size={"3rem"} />
-           {isAsideExpanded && <S.Logo>Dashboard</S.Logo>            
-          </S.Flex>
-        </NavLink>
+        <S.Flex onClick={toggleAside}>
+          <Nut size={"3rem"} />
+          {isAsideExpanded === "true" && <S.Logo>Dashboard</S.Logo>}
+        </S.Flex>
 
         <NavLink to={"/dashboard"}>
           <S.StyledButton color={"secondary"} background={"background"}>
             <Key size={"1.5rem"} />
-            {isAsideExpanded && "Dashboard"}
+            {isAsideExpanded === "true" && "Dashboard"}
           </S.StyledButton>
         </NavLink>
 
@@ -39,7 +37,7 @@ export function Header() {
           onClick={logout}
         >
           <SignOut size={"1.5rem"} />
-          {isAsideExpanded && "Logout"}
+          {isAsideExpanded === "true" && "Logout"}
         </S.StyledButton>
       </S.Aside>
     </S.Container>

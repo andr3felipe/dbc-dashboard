@@ -73,7 +73,6 @@ export function Login() {
 
   function onSubmit(data: UserData) {
     logUser(data);
-    reset();
   }
 
   const navigateToRegister = () => {

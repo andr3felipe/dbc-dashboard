@@ -41,7 +41,7 @@ export const Data = styled.p<{ width?: string; transform?: "lowercase" }>`
   ${({ width }) =>
     width &&
     css`
-      width: ${width}px;
+      min-width: ${width}px;
     `}
 `;
 

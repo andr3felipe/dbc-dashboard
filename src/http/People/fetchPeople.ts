@@ -5,7 +5,7 @@ interface FetchPeopleProps {
 
 export const fetchPeople = async ({
   page = 0,
-  pageSize = 20,
+  pageSize = 100,
 }: FetchPeopleProps = {}) => {
   const response = await fetch(
     import.meta.env.VITE_API_URL +

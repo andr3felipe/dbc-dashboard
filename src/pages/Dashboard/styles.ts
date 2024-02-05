@@ -8,8 +8,8 @@ export const Container = styled.main`
   padding: 0.5rem;
 
   @media (max-width: 425px) {
-    width: 90%;
-    overflow: hidden;
+    width: 70%;
+    padding: 0;
   }
 `;
 
@@ -66,6 +66,7 @@ export const Row = styled.div`
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  margin-bottom: 1rem;
 `;
 
 export const InfosTable = styled.div`
@@ -101,7 +102,7 @@ export const ModalOverlay = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;

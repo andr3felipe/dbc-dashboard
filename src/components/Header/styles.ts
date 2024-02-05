@@ -15,6 +15,10 @@ export const Container = styled.header`
   }
 `;
 
+export const Logo = styled.span`
+  font-weight: bold;
+`;
+
 export const Flex = styled.div`
   display: flex;
   align-items: center;

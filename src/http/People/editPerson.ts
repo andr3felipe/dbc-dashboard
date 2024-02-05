@@ -10,6 +10,7 @@ export interface PersonData {
   email: string;
 }
 
+const token = localStorage.getItem("token") as string;
 export const editPersonById = async ({
   id,
   person,
@@ -21,8 +22,7 @@ export const editPersonById = async ({
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2ZW1zZXItYXBpIiwianRpIjoiNTE0IiwiY2FyZ29zIjpbXSwiaWF0IjoxNzA3MDcwNjE4LCJleHAiOjE3MDcxNTcwMTh9.DdKFRHQpq9-wURMDMZVj1exjf6rhLvWI8GZ-MAe6S-A",
+          Authorization: token,
         },
         body: JSON.stringify(person),
       }

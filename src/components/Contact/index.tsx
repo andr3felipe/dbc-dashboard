@@ -36,7 +36,7 @@ export function Contact({
       <S.Flex>
         <h3>Contato {index + 1}</h3>
         <S.Flex>
-          <BasicMenu>
+          <BasicMenu id={String(idContato)}>
             <Button
               background="success-text"
               color="white"

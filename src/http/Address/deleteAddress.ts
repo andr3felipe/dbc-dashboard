@@ -2,6 +2,7 @@ interface DeleteAddressProps {
   id: number;
 }
 
+const token = localStorage.getItem("token") as string;
 export const deleteAddress = async ({ id }: DeleteAddressProps) => {
   try {
     const response = await fetch(
@@ -10,8 +11,7 @@ export const deleteAddress = async ({ id }: DeleteAddressProps) => {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2ZW1zZXItYXBpIiwianRpIjoiNTE0IiwiY2FyZ29zIjpbXSwiaWF0IjoxNzA3MTE1MTE0LCJleHAiOjE3MDcyMDE1MTR9.umil_0QDrmjCnVjyfBWpSI60d4bZhWRydK2xWkdwlcc",
+          Authorization: token,
         },
       }
     );

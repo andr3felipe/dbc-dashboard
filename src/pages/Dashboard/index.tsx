@@ -8,7 +8,7 @@ import CheckUsers from "../../assets/Group 10.svg";
 import Users from "../../assets/Group 11.svg";
 
 import * as S from "./styles";
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
 import { deletePersonById } from "../../http/People/deletePersonById";
 
 export function Dashboard() {
@@ -22,21 +22,23 @@ export function Dashboard() {
 
   const queryClient = useQueryClient();
   const isSmallScreen = useMediaQuery("(max-width: 600px)");
-  const [deleteUserId, setDeleteUserId] = useState(null);
+  const [deleteUserId, setDeleteUserId] = useState<number | undefined>(
+    undefined
+  );
   const [isDeleteConfirmationModalOpen, setIsDeleteConfirmationModalOpen] =
     useState(false);
 
   const allUsers = people.totalElements;
   const totalPages = people.totalPages;
 
-  const handleDeleteClick = (userId: string | SetStateAction<null>) => {
+  const handleDeleteClick = (userId: number) => {
     setDeleteUserId(userId);
     setIsDeleteConfirmationModalOpen(true);
   };
 
   const handleDeleteConfirmation = async () => {
     try {
-      await deletePersonById({ id: deleteUserId });
+      await deletePersonById({ id: deleteUserId as number });
       queryClient.invalidateQueries("people");
     } catch (error) {
       console.error("Erro ao excluir usuário:", error);
@@ -78,7 +80,7 @@ export function Dashboard() {
               color="error-text"
               background="error-background"
               border="error-text"
-              onClick={() => handleDeleteClick(params.row.id)}
+              onClick={() => handleDeleteClick(Number(params.row.id))}
             >
               Deletar
             </Button>
@@ -115,7 +117,7 @@ export function Dashboard() {
               color="text"
               background="error-background"
               border="error-text"
-              onClick={() => handleDeleteClick(params.row.id)}
+              onClick={() => handleDeleteClick(Number(params.row.id))}
             >
               Deletar
             </Button>

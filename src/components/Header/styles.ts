@@ -4,9 +4,10 @@ import { Button } from "../Button";
 export const Container = styled.header`
   display: flex;
   justify-content: space-between;
+  height: 100vh;
 
   @media (max-width: 768px) {
-    display: none;
+    margin: 0;
   }
 
   a {
@@ -25,13 +26,14 @@ export const Flex = styled.div`
 
 export const Aside = styled.aside`
   background-color: ${({ theme }) => theme.colors.white};
-  width: 15rem;
+  width: ${({ expanded }) => (expanded ? "15rem" : "5.5rem")};
   height: 100vh;
   float: left;
   padding: 1rem;
   flex-direction: column;
   border-radius: ${({ theme }) => theme.radii.large};
   box-shadow: 0px 10px 60px 0px rgba(226, 236, 249, 0.5);
+  transition: width 0.3s ease;
 `;
 
 export const StyledButton = styled(Button)`

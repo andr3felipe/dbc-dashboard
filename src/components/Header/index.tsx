@@ -1,7 +1,6 @@
 import * as S from "./styles";
-import Logo from "../../assets/setting 1.svg";
-import Logout from "../../assets/sair-do-usuario.svg";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { Key, SignOut, Nut } from "@phosphor-icons/react";
 
 export function Header() {
   const navigate = useNavigate();
@@ -14,21 +13,27 @@ export function Header() {
   return (
     <S.Container>
       <S.Aside>
-        <S.Title>
-          <img src={Logo} alt="" />
-          <h1>Dashboard</h1>
-        </S.Title>
-        <S.StyledButton color={"secondary"} background={"background"}>
-          <img src={Logout} alt="" />
-          <span>Dashboard</span>
-        </S.StyledButton>
+        <NavLink to={"/dashboard"} aria-label="Ir para o Dashboard">
+          <S.Flex>
+            <Nut size={"3rem"} />
+            <span>Dashboard</span>
+          </S.Flex>
+        </NavLink>
+
+        <NavLink to={"/dashboard"}>
+          <S.StyledButton color={"secondary"} background={"background"}>
+            <Key size={"1.5rem"} />
+            Dashboard
+          </S.StyledButton>
+        </NavLink>
+
         <S.StyledButton
           color={"secondary"}
           background={"background"}
           onClick={logout}
         >
-          <img src={Logout} alt="" />
-          <span>Logout</span>
+          <SignOut size={"1.5rem"} />
+          Logout
         </S.StyledButton>
       </S.Aside>
     </S.Container>

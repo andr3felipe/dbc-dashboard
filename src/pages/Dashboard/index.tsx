@@ -66,8 +66,8 @@ export function Dashboard() {
           field: "details",
           headerName: "Detalhes",
           width: 110,
-          renderCell: () => (
-            <NavLink to={"/Edit"}>
+          renderCell: (params: { row: { id: string } }) => (
+            <NavLink to={`/${params.row.id}`}>
               <Button
                 color="success-text"
                 background="success-background"
@@ -103,8 +103,8 @@ export function Dashboard() {
           field: "details",
           headerName: "Detalhes",
           width: 110,
-          renderCell: () => (
-            <NavLink to={"/Edit"}>
+          renderCell: (params: { row: { id: string } }) => (
+            <NavLink to={`${params.row.id}`}>
               <Button
                 color="success-text"
                 background="success-background"

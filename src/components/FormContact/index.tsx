@@ -22,7 +22,10 @@ const schema = yup
     telefone: yup
       .string()
       .min(14, "Muito curto.")
-      .required("Campo obrigatório."),
+      .required("Campo obrigatório.")
+      .transform((_, originalValue) => {
+        return originalValue ? originalValue.replace(/[_]/g, "") : "";
+      }),
     descricao: yup
       .string()
       .min(4, "Muito curto.")
@@ -104,6 +107,7 @@ export function FormContact({ closeForm }: { closeForm: () => void }) {
           <S.InputMask
             defaultValue={contact?.telefone}
             mask={"(99)99999-9999"}
+            maskChar={"_"}
             width="100%"
             placeholder="(99)99999-9999"
             {...register("telefone")}
@@ -125,7 +129,7 @@ export function FormContact({ closeForm }: { closeForm: () => void }) {
         <S.Error>{errors.descricao?.message}</S.Error>
       </S.Flex>
 
-      <Button background="primary" color="white">
+      <Button background="primary" color="white" type="submit">
         Confirmar
       </Button>
     </S.Container>

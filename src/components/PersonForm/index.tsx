@@ -21,11 +21,49 @@ const schema = yup
       }),
     dataNascimento: yup
       .string()
-      .min(10, "Muito curto.")
-      .required("Campo obrigatório."),
+      .min(10, "Formato inválido.")
+      .required("Campo obrigatório.")
+      .transform((_, originalValue) => {
+        return originalValue
+          ? originalValue
+              .replace(/[_]/g, "")
+              .split("-")
+              .map((value: string, index: number) => {
+                const today = new Date().getFullYear();
+
+                if (index === 0) {
+                  Number(value) > 1880 && Number(value) <= today
+                    ? value
+                    : (value = "");
+
+                  return value;
+                }
+
+                if (index === 2) {
+                  Number(value) > 0 && Number(value) <= 31
+                    ? value
+                    : (value = "");
+
+                  return value;
+                }
+
+                if (index === 1) {
+                  Number(value) > 0 && Number(value) <= 12
+                    ? value
+                    : (value = "");
+
+                  return value;
+                }
+
+                return value;
+              })
+              .join("-")
+          : "";
+      }),
+
     cpf: yup
       .string()
-      .min(11, "Muito curto.")
+      .min(11, "Formato inválido.")
       .required("Campo obrigatório.")
       .transform((_, originalValue) => {
         return originalValue ? originalValue.replace(/[^0-9]/g, "") : "";
@@ -33,6 +71,7 @@ const schema = yup
     email: yup
       .string()
       .email("Formato inválido")
+      .min(5, "Formato inválido")
       .required("Campo obrigatório."),
   })
   .required();
@@ -120,6 +159,7 @@ export function FormPerson({ closeForm }: { closeForm: () => void }) {
           <S.InputMask
             defaultValue={person?.dataNascimento}
             mask={"9999-99-99"}
+            maskChar={"_"}
             width="100%"
             placeholder="2000-12-25"
             {...register("dataNascimento")}

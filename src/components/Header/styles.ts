@@ -18,6 +18,7 @@ export const Container = styled.header`
 
 export const Logo = styled.span`
   font-weight: bold;
+  cursor: pointer;
 `;
 
 export const Flex = styled.div`
@@ -28,9 +29,9 @@ export const Flex = styled.div`
   padding: 1rem;
 `;
 
-export const Aside = styled.aside`
+export const Aside = styled.aside<{ expanded: string }>`
   background-color: ${({ theme }) => theme.colors.white};
-  width: ${({ expanded }) => (expanded ? "15rem" : "5.5rem")};
+  width: ${({ expanded }) => (expanded === "true" ? "15rem" : "5.5rem")};
   height: 100vh;
   float: left;
   padding: 1rem;
@@ -44,6 +45,7 @@ export const StyledButton = styled(Button)`
   display: flex;
   align-items: center;
   padding: 1rem;
+  justify-content: flex-start;
   gap: 0.5rem;
   cursor: pointer;
   font-weight: bold;

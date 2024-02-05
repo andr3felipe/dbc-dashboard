@@ -6,6 +6,8 @@ export const lightTheme = {
     accent: "#B5B7C0",
     text: "#292D32",
     white: "#FFFFFF",
+    purple: "#8234E9",
+    purpleHover: "#A35DFF",
     background: "#FAFBFF",
     "success-text": "#008767",
     "success-background": "rgba(22, 192, 152, 0.38)",

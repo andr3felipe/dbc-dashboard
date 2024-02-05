@@ -95,3 +95,32 @@ export const DataGridStyle = {
   border: "none",
   paddingInline: "2.5rem",
 };
+
+export const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ModalContainer = styled.div`
+  background: ${({ theme }) => theme.colors.white};
+  border-radius: ${({ theme }) => theme.radii.large};
+  box-shadow: 0px 10px 60px 0px rgba(226, 236, 249, 0.5);
+  padding: 2rem;
+  width: 300px;
+
+  & p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  & button {
+    margin-right: 1rem;
+  }
+`;

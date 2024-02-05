@@ -6,8 +6,10 @@ import { deleteUser } from "../../http/People/deletePeople";
 import { Button } from "../../components/Button";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Users from "../../assets/Group 10.svg";
+import { DeleteConfirmationModal } from "../../components/Modal/index";
 
 import * as S from "./styles";
+import { SetStateAction, useState } from "react";
 
 export function Dashboard() {
   const { data: people = { content: [] } } = useQuery({
@@ -20,17 +22,40 @@ export function Dashboard() {
 
   const queryClient = useQueryClient();
   const isSmallScreen = useMediaQuery("(max-width: 600px)");
+  const [deleteUserId, setDeleteUserId] = useState(null);
+  const [isDeleteConfirmationModalOpen, setIsDeleteConfirmationModalOpen] =
+    useState(false);
 
   const allUsers = people.totalElements;
   const totalPages = people.totalPages;
 
-  const handleDeleteClick = async (userId: string) => {
+  // const handleDeleteClick = async (userId: string) => {
+  //   try {
+  //     await deleteUser({ userId });
+  //     queryClient.invalidateQueries("people");
+  //   } catch (error) {
+  //     console.error("Erro ao excluir usuário:", error);
+  //   }
+  // };
+
+  const handleDeleteClick = (userId: string | SetStateAction<null>) => {
+    setDeleteUserId(userId);
+    setIsDeleteConfirmationModalOpen(true);
+  };
+
+  const handleDeleteConfirmation = async () => {
     try {
-      await deleteUser({ userId });
+      await deleteUser({ userId: deleteUserId });
       queryClient.invalidateQueries("people");
     } catch (error) {
       console.error("Erro ao excluir usuário:", error);
+    } finally {
+      setIsDeleteConfirmationModalOpen(false);
     }
+  };
+
+  const handleDeleteCancel = () => {
+    setIsDeleteConfirmationModalOpen(false);
   };
 
   const columns = isSmallScreen
@@ -162,6 +187,29 @@ export function Dashboard() {
           }}
           pageSizeOptions={[5, 10, 50]}
         />
+        {isDeleteConfirmationModalOpen && (
+          <S.ModalOverlay>
+            <S.ModalContainer>
+              <p>Tem certeza que deseja deletar?</p>
+              <Button
+                onClick={handleDeleteConfirmation}
+                color="success-text"
+                background="success-background"
+                border="success-text"
+              >
+                Sim
+              </Button>
+              <Button
+                onClick={handleDeleteCancel}
+                color="error-text"
+                background="error-background"
+                border="error-text"
+              >
+                Cancelar
+              </Button>
+            </S.ModalContainer>
+          </S.ModalOverlay>
+        )}
       </S.Table>
     </S.Container>
   );

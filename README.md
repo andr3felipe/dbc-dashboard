@@ -11,7 +11,7 @@ Olá, nós somos o time 01 da trilha front-end da 13º edição do Vem Ser DBC. 
   ( [github](https://github.com/mathmedeirosf) | [linkedin](https://www.linkedin.com/in/matheus-medeiros-84990817a) )
 
 ## 📄 Descrição
-O projeto DBC-Dashboard apresenta um site de um Painel Administrativo onde os gestores da empresa podem: criar, listar, atualizar e excluir dados de funcionários cadastrados no sistema(CRUD). Além disto, o sistema também apresenta a funcionalidade de buscar um funcionário cadastrado. Para a modelagem e desenvolvimento dele foram utilizadas as tecnologias como Figma, React, componentes do Material UI e styled components. Ademais, para acesso aos dados foi realizado o consumo da Api Pessoa. Em síntese, o painel é uma aplicação de uso exclusivo para gestores e contém a autenticação de usuário, para garantir a segurança e proteção dos dados dos funcionários, impedindo que uma pessoa não autorizada tenha acesso a dados sensíveis, exclusivos a gestores.
+O projeto DBC-Dashboard apresenta um site de um Painel Administrativo onde os gestores da empresa podem: criar, listar, atualizar e excluir dados de funcionários cadastrados no sistema(CRUD). Além disto, o sistema também apresenta a funcionalidade de buscar um funcionário cadastrado. Para a modelagem e desenvolvimento dele foram utilizadas as tecnologias como Figma, React, componentes do Material UI e styled components. Ademais, para acesso aos dados foi realizado o consumo da Api Pessoa. Em síntese, o painel é uma aplicação de uso exclusivo para gestores e contém a autenticação de usuário, para garantir a segurança e proteção dos dados dos funcionários, impedindo que uma pessoa não autorizada tenha acesso a dados sensíveis, exclusivos a gestores. Mais detalhes concernentes à organização do Projeto, assim como à divisão e à atrituição de tarefas, podem ser visualizados no <a href="https://trello.com/invite/b/VYIjnUxU/ATTIda125f1d389385d776da5963ce9b6ac7B39CC126/dbc-dashboard">Trello</a> que criamos para este fim.
 
 ## 🖇️ Especificações 
 ### 🖥️ Páginas 
@@ -20,8 +20,12 @@ O projeto DBC-Dashboard apresenta um site de um Painel Administrativo onde os ge
   - Página de Cadastro
   - Página de DashBoard
 
+### 🌐 Modais
+  Nosso projeto possui os seguintes modais:
+  - Modal de Detalhes (Onde é possível Visualizar e Editar os dados do Usuário)
+  - Modal de Deleção
 ### 🖼️ Layout
-Foi utilizada uma paleta de cores criada com base em um figma fornecido.
+Para o layout utilizamos uma paleta de cores e um modelo de interface inspirados em um <a href="https://www.figma.com/file/dQsT76PvOqwMlpzAGnNzTZ/CRM-Dashboard-Customers-List-(Community)?type=design&node-id=0-1&mode=design&t=HHpStLOpGZNkwSak-0">Figma Modelo</a> que obtivemos.
 
 ## ⚙️ Como Executar na sua máquina 
 - 1 - Execute "npm i" para instalar as dependencias do package
